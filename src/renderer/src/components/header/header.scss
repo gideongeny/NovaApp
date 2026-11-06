@@ -1,0 +1,205 @@
+@use "../../scss/globals.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(globals.$spacing-unit * 2);
+  -webkit-app-region: drag;
+  width: 100%;
+  padding: calc(globals.$spacing-unit * 2) calc(globals.$spacing-unit * 3);
+  color: globals.$muted-color;
+  border-bottom: solid 1px globals.$glass-border;
+  background: rgba(7, 9, 15, 0.75);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  &--dragging-disabled {
+    -webkit-app-region: no-drag;
+  }
+
+  &--is-windows {
+    -webkit-app-region: no-drag;
+  }
+
+  &__search {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: inline-flex;
+    transition:
+      width ease 0.25s,
+      border-color ease 0.2s,
+      box-shadow ease 0.2s,
+      background-color ease 0.2s;
+    width: 200px;
+    align-items: center;
+    border-radius: 8px;
+    border: solid 1px globals.$glass-border;
+    height: 40px;
+    -webkit-app-region: no-drag;
+
+    &:hover {
+      border-color: globals.$glass-border-bright;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    &--focused {
+      width: 260px;
+      border-color: rgba(79, 195, 247, 0.5);
+      background: rgba(11, 15, 30, 0.8);
+      box-shadow:
+        0 0 0 2px rgba(79, 195, 247, 0.12),
+        0 0 16px rgba(79, 195, 247, 0.08);
+    }
+  }
+
+  &__search-input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    color: globals.$muted-color;
+    cursor: default;
+    font-family: inherit;
+    text-overflow: ellipsis;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:focus {
+      cursor: text;
+    }
+  }
+
+  &__action-button {
+    color: inherit;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+    transition:
+      color ease 0.2s,
+      border-color ease 0.2s,
+      background-color ease 0.2s;
+    padding: globals.$spacing-unit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+
+    &:hover {
+      color: #ffffff;
+      background-color: globals.$glass-bg-hover;
+    }
+
+    &--outlined {
+      border: 1px solid globals.$glass-border;
+      border-radius: 6px;
+      background: globals.$glass-bg;
+
+      &:hover {
+        border-color: globals.$glass-border-bright;
+        background: globals.$glass-bg-hover;
+      }
+    }
+
+    &--scanning svg {
+      animation: spin 2s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__section {
+    display: flex;
+    align-items: center;
+    gap: calc(globals.$spacing-unit * 2);
+    height: 100%;
+    overflow: hidden;
+
+    &--left {
+      flex: 1;
+    }
+  }
+
+  &__back-button {
+    color: globals.$body-color;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+    position: absolute;
+    transition: transform ease 0.2s;
+    animation-duration: 0.2s;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    animation-name: slide-out;
+
+    &--enabled {
+      animation: slide-in;
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &,
+      &--enabled {
+        animation: none;
+      }
+    }
+  }
+
+  &__title {
+    transition:
+      transform ease 0.2s,
+      max-width ease 0.2s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: fit-content;
+    max-width: 100%;
+    user-select: text;
+    cursor: text;
+    -webkit-app-region: no-drag;
+    font-family: "Space Grotesk", "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+
+    &--has-back-button {
+      transform: translateX(28px);
+      max-width: calc(100% - 28px);
+    }
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+}

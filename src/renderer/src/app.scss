@@ -1,0 +1,274 @@
+@use "./scss/globals.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, globals.$brand-primary 0%, globals.$brand-secondary 100%);
+  border-radius: 24px;
+  box-shadow: 0 0 8px rgba(79, 195, 247, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, lighten(#4fc3f7, 8%) 0%, lighten(#7c4dff, 8%) 100%);
+  box-shadow: 0 0 12px rgba(79, 195, 247, 0.5);
+}
+
+html,
+body,
+#root,
+main {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  user-select: none;
+  font-family:
+    Noto Sans,
+    sans-serif;
+  font-size: globals.$body-font-size;
+  color: globals.$body-color;
+  margin: 0;
+  background-color: globals.$dark-background-color;
+}
+
+body.window-rounded {
+  background-color: transparent;
+
+  #root {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &.window-maximized #root {
+    border-radius: 0;
+  }
+}
+
+body.feedback-widget-hidden #workwonders-feedback-widget-trigger {
+  display: none;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", "Noto Sans", sans-serif;
+}
+
+p {
+  line-height: 20px;
+}
+
+#root,
+main {
+  display: flex;
+}
+
+#root {
+  flex-direction: column;
+}
+
+main {
+  overflow: hidden;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+label {
+  font-size: globals.$body-font-size;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+
+  &::-webkit-progress-bar {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+  }
+
+  &::-webkit-progress-value {
+    background: linear-gradient(90deg, globals.$brand-primary 0%, globals.$brand-secondary 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.4);
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  container-name: globals.$app-container;
+  container-type: inline-size;
+
+  &__content {
+    overflow-y: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    background:
+      radial-gradient(ellipse at top left, rgba(79, 195, 247, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(124, 77, 255, 0.06) 0%, transparent 50%),
+      linear-gradient(
+        180deg,
+        globals.$dark-background-color 0%,
+        globals.$background-color 100%
+      );
+  }
+}
+
+.title-bar {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  background: rgba(7, 9, 15, 0.85);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  align-items: center;
+  padding: 0 calc(globals.$spacing-unit * 2);
+  -webkit-app-region: drag;
+  z-index: 4;
+  border-bottom: 1px solid globals.$glass-border;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  &--windows {
+    padding-right: calc(
+      100vw - env(titlebar-area-width, calc(100vw - 140px)) - env(
+          titlebar-area-x,
+          0px
+        )
+    );
+  }
+
+  h4 {
+    font-family: "Space Grotesk", "Noto Sans", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    background: linear-gradient(90deg, globals.$brand-primary 0%, globals.$brand-secondary 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.01em;
+  }
+
+  &__cloud-text {
+    background: linear-gradient(270deg, globals.$brand-primary 50%, globals.$brand-secondary 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  &__big-picture {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: globals.$muted-color;
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: globals.$spacing-unit;
+    font-size: 12px;
+    -webkit-app-region: no-drag;
+    transition:
+      opacity ease 0.15s,
+      background-color ease 0.15s;
+
+    &:hover {
+      opacity: 1;
+      background-color: globals.$glass-bg-hover;
+    }
+  }
+
+  &__window-controls {
+    display: flex;
+    align-self: stretch;
+    margin-right: calc(globals.$spacing-unit * -2);
+    -webkit-app-region: no-drag;
+  }
+
+  &__window-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: globals.$muted-color;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.6;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      opacity 0.2s ease;
+
+    &:hover {
+      background-color: globals.$glass-bg-hover;
+      color: #dadbe1;
+      opacity: 1;
+    }
+
+    &--close:hover {
+      background-color: globals.$error-color;
+      color: #ffffff;
+      opacity: 1;
+    }
+  }
+}
+
+.woot-widget-bubble,
+.woot--bubble-holder,
+.woot-widget-holder,
+#cw-widget-holder {
+  bottom: 56px !important;
+}

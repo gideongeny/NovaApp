@@ -1,0 +1,96 @@
+@use "../../scss/globals.scss";
+
+.text-field-container {
+  flex: 1;
+  gap: globals.$spacing-unit;
+  display: flex;
+  flex-direction: column;
+
+  &__text-field {
+    display: inline-flex;
+    transition: all ease 0.2s;
+    width: 100%;
+    align-items: center;
+    border-radius: 8px;
+    border: solid 1px globals.$glass-border;
+    height: 40px;
+    min-height: 40px;
+    flex: 1;
+    min-width: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    &:hover {
+      border-color: globals.$glass-border-bright;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    &--primary {
+      background: rgba(7, 9, 15, 0.6);
+    }
+
+    &--dark {
+      background: rgba(4, 5, 10, 0.75);
+    }
+
+    &--has-error {
+      border-color: rgba(255, 77, 109, 0.6);
+      box-shadow: 0 0 0 2px rgba(255, 77, 109, 0.12);
+    }
+
+    &--focused {
+      border-color: rgba(79, 195, 247, 0.5);
+      box-shadow:
+        0 0 0 2px rgba(79, 195, 247, 0.1),
+        0 0 16px rgba(79, 195, 247, 0.08);
+    }
+  }
+
+  &__text-field-input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    color: globals.$muted-color;
+    cursor: default;
+    font-family: inherit;
+    text-overflow: ellipsis;
+    padding: globals.$spacing-unit;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:focus {
+      cursor: text;
+    }
+
+    &--read-only {
+      text-overflow: inherit;
+    }
+  }
+
+  &__toggle-password-button {
+    cursor: pointer;
+    color: globals.$muted-color;
+    padding: globals.$spacing-unit;
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__text-field-wrapper {
+    display: flex;
+    gap: globals.$spacing-unit;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__error-label {
+    color: globals.$error-color;
+  }
+}

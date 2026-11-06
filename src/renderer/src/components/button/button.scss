@@ -1,0 +1,125 @@
+@use "../../scss/globals.scss";
+
+.button {
+  padding: globals.$spacing-unit globals.$spacing-unit * 2;
+  background-color: globals.$glass-bg;
+  border-radius: 8px;
+  border: solid 1px globals.$glass-border;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: globals.$spacing-unit;
+  color: globals.$muted-color;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  &:active {
+    opacity: globals.$active-opacity;
+  }
+
+  &:disabled {
+    opacity: globals.$disabled-opacity;
+    cursor: not-allowed;
+  }
+
+  // Compact size for tight rows (list headers, card footers).
+  &--small {
+    min-height: 28px;
+    padding: 0 calc(globals.$spacing-unit * 1.25);
+    gap: calc(globals.$spacing-unit * 0.75);
+    border-radius: 6px;
+    font-size: globals.$small-font-size;
+  }
+
+  &--primary {
+    background: linear-gradient(
+      135deg,
+      rgba(79, 195, 247, 0.2) 0%,
+      rgba(124, 77, 255, 0.15) 100%
+    );
+    border-color: rgba(79, 195, 247, 0.3);
+    box-shadow:
+      0 0 16px rgba(79, 195, 247, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(
+        135deg,
+        rgba(79, 195, 247, 0.3) 0%,
+        rgba(124, 77, 255, 0.22) 100%
+      );
+      border-color: rgba(79, 195, 247, 0.45);
+      box-shadow:
+        0 0 24px rgba(79, 195, 247, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    &:disabled {
+      background-color: globals.$glass-bg;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: solid 1px globals.$glass-border;
+    color: globals.$muted-color;
+
+    &:hover:not(:disabled) {
+      background-color: globals.$glass-bg-hover;
+      border-color: globals.$glass-border-bright;
+    }
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+
+  &--dark {
+    background-color: rgba(7, 9, 15, 0.7);
+    border-color: globals.$glass-border;
+    color: globals.$muted-color;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(7, 9, 15, 0.9);
+    }
+  }
+
+  &--cloud {
+    background: linear-gradient(133deg, rgba(20, 185, 187, 0.9) 0%, rgba(10, 134, 217, 0.9) 100%);
+    box-shadow:
+      inset 0 0 14px rgba(29, 235, 225, 0.17),
+      0 0 20px rgba(79, 195, 247, 0.15);
+    border: 1px solid rgba(61, 214, 233, 0.5);
+    color: globals.$muted-color;
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.14);
+      box-shadow:
+        inset 0 0 18px rgba(29, 235, 225, 0.3),
+        0 0 28px rgba(79, 195, 247, 0.25);
+    }
+  }
+
+  &--danger {
+    border-color: rgba(255, 77, 109, 0.4);
+    background: linear-gradient(
+      135deg,
+      rgba(128, 29, 30, 0.8) 0%,
+      rgba(100, 20, 22, 0.9) 100%
+    );
+    color: globals.$muted-color;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(
+        135deg,
+        rgba(179, 32, 63, 0.9) 0%,
+        rgba(140, 24, 40, 0.95) 100%
+      );
+      border-color: rgba(255, 77, 109, 0.6);
+      box-shadow: 0 0 16px rgba(255, 77, 109, 0.2);
+    }
+  }
+}

@@ -1,0 +1,92 @@
+@use "../../scss/globals.scss";
+
+.dropdown-menu {
+  &__content {
+    background: rgba(11, 15, 30, 0.9);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid globals.$glass-border;
+    border-radius: 10px;
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    min-width: 200px;
+    z-index: calc(globals.$modal-z-index + 1);
+    flex-direction: column;
+    align-items: center;
+    animation: dropdown-menu-fade-in 0.18s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  &__group {
+    width: 100%;
+    padding: 6px;
+  }
+
+  &__title-bar {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: globals.$body-color;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__separator {
+    width: 100%;
+    height: 1px;
+    background-color: globals.$glass-border;
+    margin: 4px 0;
+  }
+
+  &__item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.12s ease-in-out;
+    font-size: 14px;
+    color: globals.$muted-color;
+  }
+
+  &__item--disabled {
+    cursor: default;
+    opacity: 0.45;
+  }
+
+  &:not(&__item--disabled) &__item:hover {
+    background-color: globals.$glass-bg-hover;
+    color: #ffffff;
+  }
+
+  &__item:focus {
+    background-color: globals.$glass-bg-hover;
+    outline: none;
+    color: #ffffff;
+  }
+
+  &__item-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: globals.$brand-primary;
+  }
+}
+
+@keyframes dropdown-menu-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

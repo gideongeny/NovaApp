@@ -1,0 +1,130 @@
+// ─── NovaDrop Design System ───────────────────────────────────────────────────
+// Glassmorphism / Liquid Class palette
+
+// Base backgrounds — deep midnight
+$background-color: #0b0f1e;
+$dark-background-color: #07090f;
+
+// Glass surface variables
+$glass-bg: rgba(255, 255, 255, 0.055);
+$glass-bg-hover: rgba(255, 255, 255, 0.09);
+$glass-border: rgba(255, 255, 255, 0.11);
+$glass-border-bright: rgba(255, 255, 255, 0.22);
+
+// Brand colours — liquid sky palette
+$brand-primary: #4fc3f7;        // liquid sky blue
+$brand-secondary: #7c4dff;      // electric violet
+$brand-accent: #00e5ff;         // cyan glow
+$brand-teal: #16b195;           // kept for legacy compat
+$brand-blue: #3e62c0;           // kept for legacy compat
+
+// Text colours
+$muted-color: #e8eaf6;
+$body-color: #9eaac8;
+
+// Semantic colours
+$border-color: rgba(255, 255, 255, 0.08);
+$success-color: #00c896;
+$danger-color: #801d1e;
+$error-color: #ff4d6d;
+$warning-color: #ffd166;
+
+// Liquid gradients
+$liquid-gradient: linear-gradient(
+  135deg,
+  rgba(79, 195, 247, 0.14) 0%,
+  rgba(124, 77, 255, 0.10) 50%,
+  rgba(0, 229, 255, 0.07) 100%
+);
+
+$brand-gradient: linear-gradient(90deg, $brand-primary 0%, $brand-secondary 100%);
+
+// Classics
+$classics-rainbow: conic-gradient(
+  from 0deg,
+  #fb0026 5deg,
+  #c80078 70deg,
+  #7300a4 145deg,
+  #f8c802 220deg,
+  #fc5812 290deg,
+  #fb0026 365deg
+);
+
+$platinum-cyan: #30edc5;
+$classics-washed: #f6746b;
+
+// Rank colours
+$rank-gold-color: #f3c611;
+$rank-gold-ribbon: #a8870c;
+$rank-silver-color: #d0d1d7;
+$rank-silver-ribbon: #8a8b91;
+$rank-bronze-color: #d08a52;
+$rank-bronze-ribbon: #8f5a2e;
+
+// ─── Glassmorphism Mixins ─────────────────────────────────────────────────────
+
+@mixin glass-panel($blur: 20px, $opacity: 0.055) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur) saturate(160%);
+  -webkit-backdrop-filter: blur($blur) saturate(160%);
+  border: 1px solid $glass-border;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@mixin liquid-glow($color: $brand-primary, $intensity: 0.28) {
+  box-shadow:
+    0 0 18px rgba($color, $intensity),
+    0 0 56px rgba($color, $intensity * 0.28);
+}
+
+@mixin brand-gradient-text {
+  background: $brand-gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@mixin platinum-gradient {
+  background-image:
+    linear-gradient(
+      105deg,
+      transparent 70%,
+      rgba(255, 255, 255, 0.1) 80%,
+      rgba(255, 255, 255, 0.2) 85%,
+      rgba(255, 255, 255, 0.1) 90%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 100%
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      $platinum-cyan 30%,
+      $brand-teal 100%
+    );
+}
+
+// ─── Spacing / Z-indices / Typography ────────────────────────────────────────
+
+$disabled-opacity: 0.5;
+$active-opacity: 0.7;
+
+$spacing-unit: 8px;
+
+$toast-z-index: 150;
+$bottom-panel-z-index: 3;
+$title-bar-z-index: 4;
+$backdrop-z-index: 4;
+$modal-z-index: 5;
+
+$body-font-size: 14px;
+$hint-font-size: 13px;
+$small-font-size: 12px;
+
+$app-container: app-container;
