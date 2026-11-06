@@ -34,4 +34,6 @@ src/renderer/public/*.local/
 NovaDrop-App/
 *.lnk
 Microsoft/
+push-to-github.bat
+
 
